@@ -9,10 +9,12 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
-    allow_credentials=False,
-    allow_methods=["POST"],
+    allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["Access-Control-Allow-Origin"]
 )
+
+
 
 # ✅ Load once (important for Vercel)
 df = pd.read_json('q-vercel-latency.json')
@@ -21,6 +23,9 @@ class SampleRequest(BaseModel):
     regions: list[str]
     threshold_ms: int
 
+@app.get('/')
+def health():
+    return {"healthy":"yes"}
 
 @app.post('/')
 def calculate_metrics(payload: SampleRequest):
