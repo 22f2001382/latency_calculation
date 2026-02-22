@@ -47,3 +47,5 @@ def calculate_metrics(payload: SampleRequest):
         }
 
     return result
+
+handler = app
