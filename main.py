@@ -51,5 +51,5 @@ def calculate_metrics(payload: SampleRequest):
             "breaches": record_count
         }
 
-    return result
+    return {"regions":result}
 
