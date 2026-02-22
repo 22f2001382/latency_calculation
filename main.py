@@ -22,7 +22,7 @@ class SampleRequest(BaseModel):
     threshold_ms: int
 
 
-@app.post('/metrics')
+@app.post('/')
 def calculate_metrics(payload: SampleRequest):
     regions = payload.regions
     threshold = payload.threshold_ms
@@ -48,4 +48,3 @@ def calculate_metrics(payload: SampleRequest):
 
     return result
 
-handler = app
